@@ -13,14 +13,14 @@ source:
     - no_crt_copy.patch    # [win]
     - no_snprintf.patch    # [win and py35]
     - vs2010_openmp.patch  # [win and py34]
+    - vs2010_path.patch    # [win64 and py34]
 
 build:
-  number: 0
+  number: 1
   features:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
     - vc14    # [win and py35]
-  skip: True  # [win]
 
 requirements:
   build:
@@ -28,7 +28,7 @@ requirements:
 
 test:
   requires:
-    - python {{ environ['PY_VER'] + '*' }}                # [win]
+    - python                                              # [win]
 
   commands: 
     - sift -h
