@@ -16,7 +16,7 @@ source:
     - vs2010_path.patch    # [win64 and py34]
 
 build:
-  number: 0
+  number: 1
   features:
     - vc9     # [win and py27]
     - vc10    # [win and py34]
@@ -25,6 +25,7 @@ build:
 requirements:
   build:
     - python  # [win]
+    - toolchain
 
 test:
   requires:
