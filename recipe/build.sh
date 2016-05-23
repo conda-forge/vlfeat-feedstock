@@ -50,3 +50,8 @@ mkdir -p $PREFIX/lib
 cp bin/${VL_ARCH}/libvl.${DYNAMIC_EXT} $PREFIX/lib/libvl.${DYNAMIC_EXT}
 mkdir -p $PREFIX/include/vl
 cp vl/*.h $PREFIX/include/vl/
+
+if [ "$(uname -s)" == "Darwin" ]; then
+  # fix @rpath in the library
+  install_name_tool -id @rpath/libvl.dylib $PREFIX/lib/libvl.dylib
+fi
