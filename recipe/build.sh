@@ -8,12 +8,10 @@ if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   else
     VL_ARCH="glnx86"
   fi
-  DYNAMIC_EXT="so"
   OPENMP=1
 fi
 if [ "$(uname -s)" == "Darwin" ]; then
   VL_ARCH="maci64"
-  DYNAMIC_EXT="dylib"
   OPENMP=0
 fi
 
@@ -47,7 +45,7 @@ cp bin/${VL_ARCH}/mser $PREFIX/bin/mser
 cp bin/${VL_ARCH}/aib $PREFIX/bin/aib
 
 mkdir -p $PREFIX/lib
-cp bin/${VL_ARCH}/libvl.${DYNAMIC_EXT} $PREFIX/lib/libvl.${DYNAMIC_EXT}
+cp bin/${VL_ARCH}/libvl${SHLIB_EXT} $PREFIX/lib/libvl${SHLIB_EXT}
 mkdir -p $PREFIX/include/vl
 cp vl/*.h $PREFIX/include/vl/
 
