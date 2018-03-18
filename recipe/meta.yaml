@@ -1,4 +1,4 @@
-{% set version = "0.9.20" %}
+{% set version = "0.9.21" %}
 
 package:
   name: vlfeat
@@ -7,7 +7,7 @@ package:
 source:
   fn: vlfeat-{{ version }}-bin.tar.gz
   url: http://www.vlfeat.org/download/vlfeat-{{ version }}-bin.tar.gz
-  sha1: 1aa063af825b28dca332396732268e98f4821179
+  sha1: 466e345b8f6b69a4465ada0994d945da79785c3e
 
   patches:
     - no_crt_copy.patch  # [win]
@@ -16,7 +16,7 @@ source:
     - vs2010_path.patch  # [win64 and py34]
 
 build:
-  number: 1
+  number: 0
   features:
     - vc9  # [win and py27]
     - vc10  # [win and py34]
