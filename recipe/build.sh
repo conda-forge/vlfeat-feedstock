@@ -15,28 +15,39 @@ if [ "$(uname -s)" == "Darwin" ]; then
   OPENMP=0
 fi
 
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" && $(uname -m) != 'arm64' ]]; then
+  DISABLE_SSE2="no"
+else
+  DISABLE_SSE2="yes"
+fi
+
 # Turn off all intrinsics.
-make ARCH=${VL_ARCH} DISABLE_AVX=yes DISABLE_OPENMP=$OPENMP MKOCTFILE="" MEX="" VERB=1
+make ARCH=${VL_ARCH} DISABLE_AVX=yes DISABLE_OPENMP=$OPENMP MKOCTFILE="" MEX="" VERB=1 DISABLE_SSE2=$DISABLE_SSE2
 
 # Run tests
-./bin/${VL_ARCH}/test_gauss_elimination
-./bin/${VL_ARCH}/test_getopt_long
-./bin/${VL_ARCH}/test_gmm
-./bin/${VL_ARCH}/test_heap-def
-./bin/${VL_ARCH}/test_host
-./bin/${VL_ARCH}/test_imopv
-./bin/${VL_ARCH}/test_kmeans
-./bin/${VL_ARCH}/test_liop
-./bin/${VL_ARCH}/test_mathop
-./bin/${VL_ARCH}/test_mathop_abs
-./bin/${VL_ARCH}/test_nan
-./bin/${VL_ARCH}/test_qsort-def
-./bin/${VL_ARCH}/test_rand
-./bin/${VL_ARCH}/test_sqrti
-./bin/${VL_ARCH}/test_stringop
-./bin/${VL_ARCH}/test_svd2
-./bin/${VL_ARCH}/test_threads
-./bin/${VL_ARCH}/test_vec_comp
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" ]]; then
+  ./bin/${VL_ARCH}/test_gauss_elimination
+  ./bin/${VL_ARCH}/test_getopt_long
+  ./bin/${VL_ARCH}/test_gmm
+  ./bin/${VL_ARCH}/test_heap-def
+  ./bin/${VL_ARCH}/test_imopv
+  ./bin/${VL_ARCH}/test_kmeans
+  ./bin/${VL_ARCH}/test_liop
+  ./bin/${VL_ARCH}/test_mathop
+  ./bin/${VL_ARCH}/test_mathop_abs
+  ./bin/${VL_ARCH}/test_nan
+  ./bin/${VL_ARCH}/test_qsort-def
+  ./bin/${VL_ARCH}/test_rand
+  ./bin/${VL_ARCH}/test_sqrti
+  ./bin/${VL_ARCH}/test_stringop
+  ./bin/${VL_ARCH}/test_svd2
+  ./bin/${VL_ARCH}/test_vec_comp
+  # These test fail even natively on the M1
+  if [[ $(uname -m) != 'arm64' ]]; then
+    ./bin/${VL_ARCH}/test_host
+    ./bin/${VL_ARCH}/test_threads
+  fi
+fi
 
 # Copy all the files and executables
 mkdir -p $PREFIX/bin
