@@ -36,6 +36,7 @@ about:
   home: http://www.vlfeat.org/
   summary: The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching.
   license: BSD-2-Clause
+  license_file: COPYING
 
 extra:
   recipe-maintainers:
