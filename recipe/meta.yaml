@@ -11,12 +11,9 @@ source:
 
   patches:
     - no_crt_copy.patch  # [win]
-    - no_snprintf.patch  # [win and vc==14]
-    - vs2010_openmp.patch  # [win and py34]
-    - vs2010_path.patch  # [win64 and py34]
 
 build:
-  number: 1002
+  number: 1003
 
 requirements:
   build:
