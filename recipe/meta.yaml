@@ -18,6 +18,7 @@ build:
 requirements:
   build:
     - {{ compiler('c') }}
+    - make  # [unix]
   host:
 
 test:
@@ -29,8 +30,7 @@ test:
     - mser -h
     - aib -h
     - if not exist %PREFIX%\\Library\\bin\\vl.dll exit 1  # [win]
-    - test -f $PREFIX/lib/libvl.dylib  # [osx]
-    - test -f $PREFIX/lib/libvl.so  # [linux]
+    - test -f $PREFIX/lib/libvl${SHLIB_EXT}  # [unix]
 
 about:
   home: http://www.vlfeat.org/
