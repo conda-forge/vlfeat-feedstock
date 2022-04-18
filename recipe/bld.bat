@@ -7,6 +7,12 @@ if "%VS_VERSION%" == "9.0" (
 ) else if "%VS_VERSION%" == "14.0" (
   set VL_MSC=1900
   set MSVSVER=140
+) else if "%VS_VERSION%" == "15.0" (
+  set VL_MSC=2000
+  set MSVSVER=141
+) else if "%VS_VERSION%" == "16.0" (
+  set VL_MSC=2100
+  set MSVSVER=142
 )
 
 set VL_ARCH=win%ARCH%
