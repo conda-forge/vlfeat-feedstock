@@ -14,8 +14,8 @@ if "%VS_VERSION%" == "9.0" (
   set VL_MSC=2100
   set MSVSVER=142
 )
-set MSVCROOT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\"
-set WINSDKROOT="C:\Program Files (x86)\Windows Kits\10\\include\10.0.22000.0"
+set MSVCROOT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+set WINSDKROOT="C:\Program Files (x86)\Windows Kits\10\include\10.0.22000.0"
 
 set VL_ARCH=win%ARCH%
 
