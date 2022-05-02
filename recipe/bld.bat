@@ -7,13 +7,21 @@ if "%VS_VERSION%" == "9.0" (
 ) else if "%VS_VERSION%" == "14.0" (
   set VL_MSC=1900
   set MSVSVER=140
+) else if "%VS_VERSION%" == "15.0" (
+  set VL_MSC=2000
+  set MSVSVER=141
+) else if "%VS_VERSION%" == "16.0" (
+  set VL_MSC=2100
+  set MSVSVER=142
 )
+set MSVCROOT="C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
+set WINSDKROOT="C:\Program Files (x86)\Windows Kits\10\include\10.0.22000.0"
 
 set VL_ARCH=win%ARCH%
 
 rmdir bin\%VL_ARCH% /S /Q
 md bin\%VL_ARCH%
-nmake /f Makefile.mak ARCH=%VL_ARCH% VL_MSVC=%VS_VERSION% VL_MSVS=%VS_MAJOR% VL_MSC=%VL_MSC% MSVSVER=%MSVSVER% VERB=1
+nmake /f Makefile.mak ARCH=%VL_ARCH% VL_MSVC=%VS_VERSION% VL_MSVS=%VS_MAJOR% VL_MSC=%VL_MSC% MSVSVER=%MSVSVER% MSVCROOT=%MSVCROOT% WINSDKROOT=%WINSDKROOT% VERB=1
 if errorlevel 1 exit 1
 
 rem Run tests
