@@ -18,7 +18,7 @@ index 908c578a..03711192 100644
 -STD_CFLAGS += -m$(march) -D_GNU_SOURCE -fno-stack-protector
 -STD_LDFLAGS += -m$(march) -Wl,--rpath,\$$ORIGIN/ -Wl,--as-needed
 +STD_CFLAGS += -D_GNU_SOURCE -fno-stack-protector
-+STD_LDFLAGS += -Wl,--rpath,\$$ORIGIN/ -Wl,--as-needed
++STD_LDFLAGS += -Wl,--rpath,\$$ORIGIN/
  endif
  
  # Convert back DISALBE_*="no" flags to be empty
