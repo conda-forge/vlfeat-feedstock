@@ -8,7 +8,7 @@ elif [[ "${target_platform}" == osx* ]]; then
   OPENMP=0
 fi
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" && $(uname -m) != 'arm64' ]]; then
+if [[ "${target_platform}" != "osx-arm64" && "${target_platform}" != "linux-aarch64" ]]; then
   DISABLE_SSE2="no"
 else
   DISABLE_SSE2="yes"
