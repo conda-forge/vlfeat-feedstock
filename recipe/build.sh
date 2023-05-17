@@ -1,14 +1,9 @@
 #!/bin/bash
 
 if [[ "${target_platform}" == linux* ]]; then
-  if [ $ARCH -eq 64 ]; then
-    VL_ARCH="glnxa64"
-  else
-    VL_ARCH="glnx86"
-  fi
+  VL_ARCH="glnxa64"
   OPENMP=1
-fi
-if [[ "${target_platform}" == osx* ]]; then
+elif [[ "${target_platform}" == osx* ]]; then
   VL_ARCH="maci64"
   OPENMP=0
 fi
