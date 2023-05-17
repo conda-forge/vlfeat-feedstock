@@ -11,6 +11,7 @@ source:
 
   patches:
     - no_crt_copy.patch  # [win]
+    - no_dll_ldflags.patch
 
 build:
   number: 1
