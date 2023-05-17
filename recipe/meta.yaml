@@ -13,7 +13,7 @@ source:
     - no_crt_copy.patch  # [win]
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -43,3 +43,4 @@ extra:
   recipe-maintainers:
     - patricksnape
     - 183amir
+    - Tobias-Fischer
