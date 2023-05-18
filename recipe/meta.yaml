@@ -12,6 +12,7 @@ source:
   patches:
     - no_crt_copy.patch  # [win]
     - no_dll_ldflags.patch
+    - no_memcpy_version_check.patch  # [linux and aarch64]
 
 build:
   number: 1
