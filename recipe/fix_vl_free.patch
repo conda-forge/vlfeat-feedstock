@@ -1,0 +1,15 @@
+diff --git a/vl/generic.c b/vl/generic.c
+index c6f84a96..fb2d4126 100644
+--- a/vl/generic.c
++++ b/vl/generic.c
+@@ -919,7 +919,9 @@ vl_configuration_to_string_copy ()
+   }
+ 
+   if (staticString) vl_free(staticString) ;
+-  if (cpuString) vl_free(cpuString) ;
++#if defined(VL_ARCH_IX86) || defined(VL_ARCH_X64) || defined(VL_ARCH_IA64)
++  if (cpuString) vl_free(cpuString);
++#endif
+   return string ;
+ }
+ 

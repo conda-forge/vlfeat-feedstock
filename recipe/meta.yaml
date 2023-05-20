@@ -11,9 +11,12 @@ source:
 
   patches:
     - no_crt_copy.patch  # [win]
+    - no_dll_ldflags.patch
+    - no_memcpy_version_check.patch  # [linux and aarch64]
+    - fix_vl_free.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
 
 requirements:
@@ -43,3 +46,4 @@ extra:
   recipe-maintainers:
     - patricksnape
     - 183amir
+    - Tobias-Fischer

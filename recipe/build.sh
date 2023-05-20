@@ -1,21 +1,14 @@
 #!/bin/bash
 
-source activate "${CONDA_DEFAULT_ENV}"
-
-if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  if [ $ARCH -eq 64 ]; then
-    VL_ARCH="glnxa64"
-  else
-    VL_ARCH="glnx86"
-  fi
+if [[ "${target_platform}" == linux* ]]; then
+  VL_ARCH="glnxa64"
   OPENMP=1
-fi
-if [ "$(uname -s)" == "Darwin" ]; then
+elif [[ "${target_platform}" == osx* ]]; then
   VL_ARCH="maci64"
   OPENMP=0
 fi
 
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" != "1" && $(uname -m) != 'arm64' ]]; then
+if [[ "${target_platform}" != "osx-arm64" && "${target_platform}" != "linux-aarch64" ]]; then
   DISABLE_SSE2="no"
 else
   DISABLE_SSE2="yes"
@@ -61,7 +54,7 @@ mkdir -p $PREFIX/include/vl
 cp vl/*.h $PREFIX/include/vl/
 
 # For some reason the instal_name_tool fails, so I do it manually here
-if [ "$(uname -s)" == "Darwin" ]; then
+if [[ "${target_platform}" == osx* ]]; then
   install_name_tool -id @rpath/libvl.dylib $PREFIX/lib/libvl.dylib
   install_name_tool -change @loader_path/libvl.dylib @rpath/../lib/libvl.dylib $PREFIX/bin/sift
   install_name_tool -change @loader_path/libvl.dylib @rpath/../lib/libvl.dylib $PREFIX/bin/mser
